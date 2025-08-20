@@ -1,0 +1,95 @@
+{
+  "name": "bookmarklet-llm",
+  "version": "2.0.0",
+  "description": "Enhanced LLM-powered bookmarklet for intelligent web content analysis with multi-provider support, themes, conversation history, and smart content extraction",
+  "main": "src/server/server.js",
+  "scripts": {
+    "start": "node dist/server/server.js",
+    "dev": "tsx watch src/server/server.ts",
+    "dev:js": "nodemon src/server/server.js",
+    "dev:all": "NODE_ENV=development tsx scripts/dev.js",
+    "build": "tsx scripts/build.ts",
+    "build:watch": "tsx watch scripts/build.ts",
+    "build:bookmarklet": "tsx scripts/build.ts",
+    "build:bookmarklet:watch": "nodemon --watch src/bookmarklet/bookmarklet.js --exec \"npm run build:bookmarklet\"",
+    "type-check": "tsc --noEmit",
+    "config": "tsx scripts/config-cli.ts",
+    "config:status": "tsx scripts/config-cli.ts status",
+    "config:set": "tsx scripts/config-cli.ts set",
+    "config:test": "tsx scripts/config-cli.ts test",
+    "config:ui": "echo 'Configuration UI available at: http://localhost:4000/config-ui' && (command -v open >/dev/null && open http://localhost:4000/config-ui || echo 'Open http://localhost:4000/config-ui in your browser')",
+    "test": "echo 'No tests yet' && exit 0",
+    "clean": "rm -rf dist/ config/llm-config.json",
+    "clean:all": "rm -rf dist/ config/ node_modules/",
+    "install-bookmarklet": "npm run build && npm run build:bookmarklet && echo 'Bookmarklet built! See docs/README.md for installation instructions.'",
+    "server:health": "curl -s http://localhost:4000/health | json_pp 2>/dev/null || curl -s http://localhost:4000/health || echo 'Server not running'",
+    "setup": "npm install && npm run build && npm run build:bookmarklet && echo '✅ Setup complete! Run \"npm start\" to begin.'",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint src --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write src/**/*.{ts,tsx,js,jsx,json}",
+    "format:check": "prettier --check src/**/*.{ts,tsx,js,jsx,json}"
+  },
+  "bin": {
+    "llm-config": "tsx ./scripts/config-cli.ts"
+  },
+  "keywords": [
+    "bookmarklet",
+    "llm",
+    "ai",
+    "web-automation",
+    "content-analysis",
+    "lm-studio",
+    "openai",
+    "anthropic",
+    "gemini",
+    "multi-provider",
+    "browser-extension",
+    "javascript",
+    "nodejs",
+    "express"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.3.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "chalk": "^5.4.1",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "minify": "^14.0.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.0",
+    "socket.io": "^4.8.1",
+    "terser": "^5.24.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.3.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "your-repo-url"
+  },
+  "files": [
+    "src/",
+    "public/",
+    "scripts/",
+    "dist/",
+    "docs/",
+    "config/",
+    "README.md",
+    "package.json"
+  ]
+}
